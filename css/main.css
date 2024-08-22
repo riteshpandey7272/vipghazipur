@@ -529,16 +529,17 @@ ul li a.menu-active {
 }
 
 .slider-one {
-    background: rgba(0, 0, 0, 0) url(../img/main/main2.jpeg) no-repeat scroll center top / cover;
+    background: rgba(0, 0, 0, 0) url("../img/main/main2.png") no-repeat scroll center top / cover;
 }
 
 .slider-two {
-    background: rgba(0, 0, 0, 0) url("../img/main/main1.jpeg") no-repeat scroll center top / cover;
+    background: rgba(0, 0, 0, 0) url("../img/main/main1.jpg") no-repeat scroll center top / cover;
 }
 
 .slider-three {
-    background: rgba(0, 0, 0, 0) url("../img/main/main4.jpeg") no-repeat scroll center top / cover;
+    background: rgba(0, 0, 0, 0) url("../img/main/main4.jpg") no-repeat scroll center top / cover;
 }
+
 
 .slider-table {
     display: table;
