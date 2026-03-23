@@ -1,0 +1,1020 @@
+/* =============================================
+   VANDANA INSTITUTE OF PHARMACY
+   Custom UI — Precise Clean Build
+   ============================================= */
+
+/* ---- Animations ---- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulseDot {
+  0%,100% { box-shadow: 0 0 0 0 rgba(0,184,148,.5); }
+  50%      { box-shadow: 0 0 0 6px rgba(0,184,148,0); }
+}
+
+/* ---- Design Tokens ---- */
+:root {
+  --blue:       #1a3c6e;
+  --blue-lt:    #2558a8;
+  --teal:       #00b894;
+  --teal-dk:    #00997e;
+  --bg:         #f4f8fe;
+  --white:      #ffffff;
+  --text:       #1e2d3d;
+  --muted:      #6b7a8f;
+  --border:     #dde8f6;
+  --sh-sm:  0 2px 12px rgba(26,60,110,.08);
+  --sh-md:  0 8px 28px rgba(26,60,110,.13);
+  --sh-lg:  0 20px 50px rgba(26,60,110,.18);
+  --r:      12px;
+  --r-lg:   18px;
+  --ease:   all .3s cubic-bezier(.4,0,.2,1);
+}
+
+/* ---- Base ---- */
+body  { font-family:'Inter','Lato',sans-serif !important; background:var(--bg); color:var(--text) !important; }
+h1,h2,h3,h4,h5,h6 { font-family:'Poppins','Raleway',sans-serif !important; }
+a { transition:var(--ease); }
+
+/* ==============================================
+   TOP INFO BAR
+   ============================================== */
+.top-header-area {
+  background: linear-gradient(135deg,var(--blue) 0%,var(--blue-lt) 100%) !important;
+  padding: 7px 0 !important;
+  border-bottom: 2px solid var(--teal);
+  /* position is static — sits inside the fixed .header-area parent */
+}
+.top-header-info a        { color:rgba(255,255,255,.88) !important; font-size:13px !important; font-weight:500 !important; }
+.top-header-info a:hover  { color:var(--teal) !important; }
+.top-header-info i.fa     { color:var(--teal) !important; margin-right:6px !important; }
+.top-header-info .seprator{ color:rgba(255,255,255,.3) !important; padding:0 10px !important; }
+.header-right a            { color:rgba(255,255,255,.82) !important; font-size:11px !important; font-weight:600 !important; letter-spacing:.8px; }
+.header-right a:hover      { color:var(--teal) !important; }
+
+/* ==============================================
+   HEADER — full sticky wrapper (top-info + logo band + nav are all inside this)
+   ============================================== */
+.header-area {
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(26,60,110,.18);
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 1000 !important;
+}
+/* Flex row: logo left, college code right, vertically centered */
+.header-area > .container > .row {
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap;
+  padding: 10px 0;
+  min-height: 72px;
+}
+.header-area > .container > .row > .col-md-6 { float: none !important; }
+.believed-logo              { padding: 0 !important; }
+.believed-logo img          { width: 320px !important; max-width: 100%; display: block; }
+
+/* College-code badge — pushed right */
+.header-area .container .col-md-6:last-child {
+  display: flex !important;
+  align-items: center;
+  justify-content: flex-end;
+}
+/* College-code badge styling — NOT applied to responsive-menu-wrap */
+.header-area .container .col-md-6:last-child > div:not(.responsive-menu-wrap) {
+  margin-top: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg) !important;
+  border: 1px solid var(--border) !important;
+  border-left: 3px solid var(--teal) !important;
+  border-radius: 7px !important;
+  padding: 8px 14px !important;
+  font-size: 12px !important;
+  color: var(--blue) !important;
+  font-weight: 600 !important;
+}
+
+/* ==============================================
+   NAVIGATION BAR
+   ============================================== */
+.menu-area {
+  background: linear-gradient(135deg,var(--blue) 0%,var(--blue-lt) 100%) !important;
+  /* position is static — sits inside the fixed .header-area parent.
+     Override the jQuery Sticky inline position:fixed that it adds on scroll. */
+  position: static !important;
+}
+/* Also override the .fixed-menu class the scroll handler adds */
+.menu-area.fixed-menu {
+  position: static !important;
+  top: auto !important;
+  box-shadow: none !important;
+}
+
+/* Nav row: menu left, button right */
+.menu-area .col-md-12 {
+  position: relative !important;
+  display: flex !important;
+  align-items: stretch !important;
+  padding-right: 160px !important;   /* room for download button */
+}
+
+.main-menu               { background:transparent !important; margin:0 !important; }
+.main-menu > ul          { display:flex !important; flex-wrap:nowrap; list-style:none !important; margin:0 !important; padding:0 !important; }
+.main-menu > ul > li     { position:relative; }
+
+/* Nav links */
+.main-menu > ul > li > a {
+  color: rgba(255,255,255,.86) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  padding: 14px 13px !important;
+  letter-spacing: .6px;
+  text-transform: uppercase !important;
+  display: block;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+  transition: var(--ease) !important;
+}
+.main-menu > ul > li > a:hover,
+.main-menu > ul > li > a.menu-active {
+  background: rgba(255,255,255,.07) !important;
+  color: #fff !important;
+  border-bottom-color: var(--teal) !important;
+}
+.main-menu ul li a:active,
+.main-menu ul li a:focus {
+  background: rgba(255,255,255,.07) !important;
+  color: #fff !important;
+}
+
+/* Dropdown */
+.main-menu ul li ul.drop-menu {
+  border-top: none !important;
+  border-bottom: 3px solid var(--teal) !important;
+  border-radius: 0 0 var(--r) var(--r);
+  box-shadow: var(--sh-lg) !important;
+  overflow: hidden;
+  min-width: 210px;
+}
+.main-menu ul li ul.drop-menu li a {
+  background: rgba(10,22,48,.97) !important;
+  color: rgba(255,255,255,.82) !important;
+  font-size: 12px !important;
+  padding: 11px 18px !important;
+  text-align: left !important;
+  border-bottom: 1px solid rgba(255,255,255,.05) !important;
+  letter-spacing: .3px;
+  text-transform: none !important;
+  white-space: normal;
+  border-bottom-color: transparent !important;
+}
+.main-menu ul li ul.drop-menu li a:hover {
+  background: var(--teal) !important;
+  color: #fff !important;
+  padding-left: 24px !important;
+}
+
+/* Download Form button — absolute inside the flex col */
+.donate-box {
+  position: absolute !important;
+  right: 15px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  margin: 0 !important;
+  z-index: 5;
+}
+
+/* Desktop: always show main-menu, always hide slicknav */
+@media (min-width: 992px) {
+  .main-menu          { display: block !important; }
+  .responsive-menu-wrap { display: none !important; }
+}
+
+/* ==============================================
+   DONATE / CTA BUTTON
+   ============================================== */
+.donate-btn {
+  background: linear-gradient(135deg,var(--teal),var(--teal-dk)) !important;
+  color: #fff !important;
+  border-radius: 7px !important;
+  padding: 10px 18px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: .8px;
+  display: inline-block;
+  box-shadow: 0 4px 14px rgba(0,184,148,.35);
+  transition: var(--ease) !important;
+  text-transform: uppercase !important;
+}
+.donate-btn:hover {
+  background: linear-gradient(135deg,var(--teal-dk),#007060) !important;
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(0,184,148,.45) !important;
+}
+.hvr-shutter-out-horizontal:before { background:var(--teal-dk) !important; }
+
+/* ==============================================
+   HERO SLIDER
+   Precise fix: drive height from .slider-table (content),
+   NOT from owl containers. Owl JS reads content height
+   and sets .owl-stage-outer height automatically.
+   ============================================== */
+.slider-area {
+  position: relative;
+  /* NO overflow:hidden — Owl animateIn/animateOut uses position:absolute
+     on items during fade transitions; clipping breaks the animation */
+  background: #0b1a38;
+}
+
+/* Compensate for fixed header:
+   top-info(~36px) + logo-band(~92px) + nav-bar(~45px) = ~173px on desktop.
+   Inner pages start with .page-title-area — push it below the fixed header.
+   Homepage has .slider-area which starts at position 0 (header overlays it). */
+.page-title-area { margin-top: 173px !important; }
+
+/* THIS is the height driver — Owl reads this */
+.slider-table {
+  display: table !important;
+  height: 100vh !important;
+  min-height: 500px;
+  width: 100% !important;
+}
+.slider-table-cell {
+  display: table-cell !important;
+  vertical-align: middle !important;
+  position: relative !important;
+  z-index: 2;
+  /* Push slider content below the fixed header so text isn't hidden behind it */
+  padding-top: 173px !important;
+}
+
+/* Slide backgrounds */
+.single-slider {
+  position: relative;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+}
+/* Dark overlay */
+.single-slider::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(125deg,
+    rgba(8,20,52,.82) 0%,
+    rgba(26,60,110,.58) 55%,
+    rgba(0,153,126,.14) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Slider text always white */
+.slider-info h2 {
+  color: #fff !important;
+  font-family: 'Poppins',sans-serif !important;
+  text-transform: none !important;
+  letter-spacing: -.3px !important;
+}
+.slider-info p  { color: rgba(255,255,255,.88) !important; }
+.slider-info a  { text-decoration: none; }
+
+/* Owl dots */
+.slider-area .owl-dots {
+  position: absolute !important;
+  bottom: 22px !important;
+  width: 100% !important;
+  text-align: center !important;
+  z-index: 10;
+}
+.slider-area .owl-dot {
+  background: rgba(255,255,255,.4) !important;
+  border-radius: 50% !important;
+  width: 10px !important; height: 10px !important;
+  margin: 0 4px !important;
+  display: inline-block;
+  transition: var(--ease) !important;
+  cursor: pointer;
+}
+.slider-area .owl-dot.active {
+  background: var(--teal) !important;
+  width: 28px !important;
+  border-radius: 5px !important;
+}
+
+/* Owl nav arrows — round buttons */
+.slider-wraper .owl-nav div {
+  background: rgba(255,255,255,.12) !important;
+  color: #fff !important;
+  width: 46px !important; height: 46px !important;
+  line-height: 46px !important;
+  font-size: 20px !important;
+  border-radius: 50% !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  transition: var(--ease) !important;
+  border: 1.5px solid rgba(255,255,255,.22) !important;
+  position: absolute;
+}
+.slider-wraper .owl-nav .owl-prev { left: 20px !important; }
+.slider-wraper .owl-nav .owl-next {
+  left: auto !important; right: 20px !important;
+  border-bottom-right-radius: 50% !important;
+  border-top-right-radius: 50% !important;
+  border-bottom-left-radius: 50% !important;
+  border-top-left-radius: 50% !important;
+}
+.slider-area:hover .slider-wraper .owl-nav div {
+  background: var(--teal) !important;
+  border-color: var(--teal) !important;
+}
+
+/* ==============================================
+   STATS BAR
+   ============================================== */
+.stats-bar {
+  background: linear-gradient(135deg,var(--blue) 0%,var(--blue-lt) 100%);
+  padding: 26px 0;
+  box-shadow: 0 6px 22px rgba(26,60,110,.22);
+}
+.stats-bar .stat-item {
+  text-align: center;
+  padding: 8px 20px;
+  border-right: 1px solid rgba(255,255,255,.13);
+}
+.stats-bar .stat-item:last-child { border-right: none; }
+.stats-bar .stat-number {
+  display: block;
+  font-family: 'Poppins',sans-serif;
+  font-size: 34px; font-weight: 800;
+  color: var(--teal); line-height: 1;
+}
+.stats-bar .stat-label {
+  display: block;
+  font-size: 11px; font-weight: 600;
+  color: rgba(255,255,255,.75);
+  text-transform: uppercase; letter-spacing: 1.2px;
+  margin-top: 5px;
+}
+.stats-bar .stat-icon {
+  display: block;
+  font-size: 22px;
+  color: rgba(255,255,255,.16);
+  margin-bottom: 5px;
+}
+
+/* ==============================================
+   ABOUT SECTION
+   ============================================== */
+.about-area { background:var(--bg) !important; padding:60px 0 40px !important; }
+
+/* Section title */
+.title h2   { font-size:28px !important; color:var(--blue) !important; font-weight:800 !important; padding:0 0 20px !important; }
+.title h2::before { border:3px solid var(--teal) !important; width:36px !important; border-radius:2px; }
+.title h2::after  { border:1px dashed rgba(0,184,148,.25) !important; width:100% !important; }
+.title p    { color:var(--muted) !important; font-size:15px !important; line-height:1.8 !important; }
+.about-area .col-md-8 p { color:var(--muted); line-height:1.85; font-size:15px; }
+
+/* News widget */
+.sidebar-widget {
+  background: #fff !important;
+  border-radius: var(--r-lg) !important;
+  padding: 20px !important;
+  box-shadow: var(--sh-md) !important;
+  border: 1px solid var(--border) !important;
+  overflow: hidden; position: relative;
+}
+.sidebar-widget::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:4px;
+  background: linear-gradient(90deg,var(--teal),var(--blue-lt));
+}
+.widget-title h2 {
+  color:var(--blue) !important; font-size:16px !important; font-weight:700 !important;
+  text-transform:none !important; padding:0 0 12px !important; margin-bottom:12px !important;
+  border-bottom:2px solid var(--border) !important;
+  display:flex !important; align-items:center; gap:8px;
+}
+.widget-title h2::before {
+  content:''; display:inline-block; width:9px; height:9px;
+  background:var(--teal); border-radius:50%; flex-shrink:0;
+  animation: pulseDot 2s infinite;
+}
+.widget-title h2::after { display:none !important; }
+.sidebar-widget ul { list-style:none !important; padding:0 !important; margin:0 !important; }
+.sidebar-widget ul li { padding:8px 0; border-bottom:1px dashed var(--border); }
+.sidebar-widget ul li:last-child { border-bottom:none; }
+.sidebar-widget ul li a { color:var(--text) !important; font-size:13px !important; font-weight:500; display:block; }
+.sidebar-widget ul li a:hover { color:var(--teal) !important; padding-left:5px; }
+.sidebar-widget ul li a span { display:block; color:var(--teal) !important; font-size:11px; font-weight:600; margin-top:2px; }
+
+/* ==============================================
+   SERVICE CARDS (Chairman / Director / Principal)
+   Key: reset main.css's position:absolute title + 80px margin
+   ============================================== */
+.service-content {
+  position: relative !important;
+  background: #fff !important;
+  border-radius: var(--r-lg) !important;
+  margin: 0 0 28px 0 !important;     /* kill the original 80px top margin */
+  padding: 28px 22px 22px !important;
+  box-shadow: var(--sh-sm) !important;
+  border: 1px solid var(--border) !important;
+  overflow: hidden;
+  text-align: left !important;
+  transition: var(--ease) !important;
+}
+/* Teal left stripe via pseudo-element (not ::before — avoid conflict) */
+.service-content::after {
+  content: '';
+  position: absolute; top:0; left:0;
+  width: 4px; height: 100%;
+  background: linear-gradient(to bottom,var(--teal),var(--blue-lt));
+  border-radius: 0 3px 3px 0;
+  pointer-events: none;
+}
+.service-content:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: var(--sh-lg) !important;
+  border-color: rgba(0,184,148,.3) !important;
+}
+/* Reset the absolute-positioned title from main.css */
+.service-title {
+  position: static !important;
+  left: auto !important; top: auto !important; right: auto !important;
+  margin-bottom: 12px;
+}
+.service-title h3 {
+  display: block !important; position: static !important;
+  box-shadow: none !important; background: transparent !important;
+  color: var(--blue) !important; font-size: 17px !important;
+  font-weight: 700 !important; padding: 0 0 10px !important;
+  margin: 0 !important; border-bottom: 2px solid var(--border) !important;
+  text-transform: none !important;
+}
+/* Faded icon top-right */
+.service-content > i.fa {
+  font-size: 50px !important; color: var(--teal) !important;
+  opacity: .09 !important; position: absolute !important;
+  top: 16px !important; right: 16px !important;
+  pointer-events: none; transition: var(--ease);
+}
+.service-content:hover > i.fa { opacity:.22 !important; transform:scale(1.08) rotate(-5deg); }
+.service-content > p  { color:var(--muted) !important; font-size:14px !important; line-height:1.75 !important; margin:12px 0 16px !important; }
+.service-content .donate-btn.more-btn { font-size:11px !important; padding:8px 16px !important; border-radius:7px !important; margin-top:0 !important; }
+
+/* ==============================================
+   ACCREDITATION SECTION (row outside container)
+   ============================================== */
+.about-area h2[align="center"] {
+  font-size: 24px !important; color: var(--blue) !important; font-weight: 800 !important;
+  text-align: center !important; margin: 36px 0 26px !important;
+  padding-bottom: 14px !important; position: relative;
+  text-transform: none !important; display: block !important;
+}
+.about-area h2[align="center"]::before { display:none !important; }
+.about-area h2[align="center"]::after {
+  content:'' !important; position:absolute !important;
+  bottom:0 !important; left:50% !important; transform:translateX(-50%) !important;
+  width:54px !important; height:3px !important;
+  background: linear-gradient(90deg,var(--teal),var(--blue-lt)) !important;
+  border-radius:2px !important; border:none !important;
+}
+/* Fix Bootstrap .row outside container (negative margin overflow) */
+.about-area > .row { margin-left:0 !important; margin-right:0 !important; padding:0 15px; }
+/* Accreditation card overrides */
+.about-area > .row .service-content { text-align:center !important; padding:26px 16px 20px !important; margin-top:0 !important; }
+.about-area > .row .service-title   { display:none !important; }
+.about-area > .row .service-content::after { width:100% !important; height:4px !important; border-radius:0 !important; }
+.about-area > .row .service-content > p { display:flex !important; justify-content:center !important; margin:4px 0 14px !important; }
+.about-area > .row .service-content p img {
+  width:106px !important; height:106px !important; border-radius:50% !important;
+  object-fit:contain !important; border:3px solid var(--border) !important;
+  padding:5px; background:#fff; box-shadow:var(--sh-sm) !important;
+  transition:var(--ease) !important;
+}
+.about-area > .row .service-content:hover p img { border-color:var(--teal) !important; transform:scale(1.05); }
+
+/* ==============================================
+   CALL TO ACTION
+   ============================================== */
+.call-to-action {
+  padding: 60px 0 !important;
+  text-align: center !important;
+  position: relative; overflow: hidden;
+}
+.call-to-action h2  { color:#fff !important; font-size:28px !important; font-weight:800 !important; text-transform:none !important; margin-bottom:10px !important; }
+.call-to-action h2 span { color:#fff !important; font-size:inherit !important; }
+
+/* ==============================================
+   INNER PAGE TITLE BANNER
+   ============================================== */
+.page-title-area {
+  background-attachment: scroll !important;
+  padding: 56px 0 !important;
+  position: relative;
+}
+.page-title-area::before {
+  background: linear-gradient(135deg,
+    rgba(8,20,52,.87) 0%,
+    rgba(26,60,110,.72) 60%,
+    rgba(0,153,126,.28) 100%
+  ) !important;
+}
+.page-title .title h2 {
+  color:#fff !important; font-size:28px !important; font-weight:800 !important;
+  text-transform:none !important; padding:0 !important; letter-spacing:-.2px;
+}
+.page-title .title h2::before,
+.page-title .title h2::after { display:none !important; }
+.breadcrumb { background:transparent !important; padding:8px 0 0 !important; }
+.breadcrumb > li + li::before { color:rgba(255,255,255,.4) !important; }
+.breadcrumb > li > a  { color:var(--teal) !important; font-weight:600; }
+.breadcrumb > .active { color:rgba(255,255,255,.75) !important; }
+
+/* ==============================================
+   INNER PAGE CONTENT
+   ============================================== */
+.section-padding { padding:54px 0 !important; }
+
+/* Tables */
+.table { background:#fff; border-radius:var(--r) !important; overflow:hidden; box-shadow:var(--sh-sm); border:1px solid var(--border) !important; }
+.table > thead > tr > th {
+  background: linear-gradient(135deg,var(--blue) 0%,var(--blue-lt) 100%) !important;
+  color:#fff !important; font-family:'Poppins',sans-serif !important;
+  font-size:13px !important; font-weight:600 !important;
+  text-transform:uppercase !important; letter-spacing:.7px;
+  padding:13px 15px !important; border:none !important;
+}
+.table > tbody > tr > td { color:var(--muted) !important; font-size:14px !important; padding:11px 15px !important; border-color:var(--border) !important; vertical-align:middle !important; }
+.table > tbody > tr:nth-child(even) > td { background:var(--bg) !important; }
+.table > tbody > tr:hover > td { background:rgba(0,184,148,.06) !important; color:var(--text) !important; }
+.table-bordered { border:1px solid var(--border) !important; }
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > td { border-color:var(--border) !important; }
+
+/* Contact form inputs */
+.contact-form input,.contact-form textarea,.contact-form select,
+.contact-info-form input,.contact-info-form textarea {
+  border:1.5px solid var(--border) !important; border-radius:8px !important;
+  padding:11px 14px !important; font-size:14px !important; color:var(--text) !important;
+  background:#fff !important; transition:var(--ease) !important;
+  width:100%; margin-bottom:14px; font-family:'Inter',sans-serif !important;
+}
+.contact-form input:focus,.contact-form textarea:focus,
+.contact-info-form input:focus,.contact-info-form textarea:focus {
+  border-color:var(--teal) !important; box-shadow:0 0 0 3px rgba(0,184,148,.11) !important; outline:none !important;
+}
+.contact-form button[type="submit"],.contact-info-form button[type="submit"] {
+  background:linear-gradient(135deg,var(--teal),var(--teal-dk)) !important;
+  color:#fff !important; border:none !important; border-radius:8px !important;
+  padding:12px 30px !important; font-weight:700 !important; font-size:13px !important;
+  letter-spacing:.7px; cursor:pointer; transition:var(--ease) !important;
+}
+
+/* Gallery filter pills */
+.iso-nav ul { list-style:none; padding:0; display:flex; flex-wrap:wrap; gap:8px; margin-bottom:24px; }
+.iso-nav ul li { background:#fff; border:1.5px solid var(--border); border-radius:6px; padding:6px 16px; font-size:13px; font-weight:600; color:var(--muted); cursor:pointer; transition:var(--ease); }
+.iso-nav ul li:hover,.iso-nav ul li.gallery-active { background:var(--teal); border-color:var(--teal); color:#fff; }
+
+/* Preloader */
+.circle { border-color:var(--teal) !important; }
+
+/* ==============================================
+   FOOTER
+   ============================================== */
+.footer-area { background:linear-gradient(160deg,#09172e 0%,#132a53 50%,#09172e 100%) !important; position:relative; overflow:hidden; }
+.top-footer-area { padding:54px 0 34px !important; border-bottom:1px solid rgba(255,255,255,.07) !important; }
+.footer-widgets h2 {
+  font-size:13px !important; color:#fff !important; font-weight:700 !important;
+  text-transform:uppercase !important; letter-spacing:2px;
+  margin-bottom:16px !important; padding-bottom:10px !important;
+  border-bottom:2px solid var(--teal) !important; display:inline-block !important;
+}
+.footer-widgets p { color:rgba(255,255,255,.56) !important; font-size:13px !important; line-height:1.7; }
+.footer-widgets ul { list-style:none !important; padding:0 !important; margin:0 !important; }
+.footer-widgets ul li { padding:6px 0; border-bottom:1px solid rgba(255,255,255,.04); }
+.footer-widgets ul li:last-child { border-bottom:none; }
+.footer-widgets ul li a { color:rgba(255,255,255,.58) !important; font-size:13px !important; transition:var(--ease) !important; display:flex; align-items:center; gap:7px; }
+.footer-widgets ul li a:hover { color:var(--teal) !important; padding-left:4px; }
+.footer-widgets ul li a i.fa,.footer-widgets ul li i.fa { color:var(--teal) !important; font-size:12px; flex-shrink:0; width:14px; }
+.footer-widgets > ul > li { color:rgba(255,255,255,.58); font-size:13px; display:flex; align-items:flex-start; gap:8px; }
+.footer-social-link { margin-top:16px; display:flex; gap:8px; flex-wrap:wrap; }
+.footer-social-link a {
+  width:33px !important; height:33px !important;
+  background:rgba(255,255,255,.07) !important; border:1px solid rgba(255,255,255,.10) !important;
+  border-radius:50% !important; display:inline-flex !important;
+  align-items:center; justify-content:center;
+  color:rgba(255,255,255,.6) !important; font-size:13px;
+  transition:var(--ease) !important;
+}
+.footer-social-link a:hover { background:var(--teal) !important; border-color:var(--teal) !important; color:#fff !important; transform:translateY(-3px); }
+.main-footer-area { background:rgba(0,0,0,.22) !important; padding:15px 0 !important; }
+.copy-right p { color:rgba(255,255,255,.38) !important; font-size:12px !important; margin:0 !important; }
+.copy-right p a { color:var(--teal) !important; font-weight:600; }
+
+/* ==============================================
+   SCROLL TO TOP
+   ============================================== */
+#scrollUp {
+  background:linear-gradient(135deg,var(--teal),var(--teal-dk)) !important;
+  border-radius:50% !important; width:42px !important; height:42px !important;
+  bottom:26px !important; right:26px !important;
+  display:flex !important; align-items:center; justify-content:center;
+  box-shadow:0 4px 14px rgba(0,184,148,.38) !important; transition:var(--ease) !important;
+}
+#scrollUp:hover { background:linear-gradient(135deg,var(--blue-lt),var(--blue)) !important; transform:translateY(-3px); }
+
+/* ==============================================
+   MOBILE MENU (slicknav) — tablet & mobile only
+   ============================================== */
+
+/* Transparent wrapper — no background bar, just the button */
+.slicknav_menu {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Hamburger button */
+.slicknav_btn {
+  background: var(--teal) !important;
+  border-radius: 7px !important;
+  padding: 7px 10px !important;
+  margin: 0 !important;
+  display: block !important;
+}
+.slicknav_icon-bar {
+  background: #fff !important;
+  height: 2px !important;
+  width: 22px !important;
+  display: block !important;
+  margin: 4px 0 !important;
+  box-shadow: none !important;
+}
+.slicknav_menu .slicknav_menutxt { display:none !important; }
+.slicknav_menu .slicknav_icon     { margin: 0 !important; float: none !important; }
+
+/* Dropdown nav — fixed so it overlays content below the full fixed header */
+.slicknav_nav {
+  background: linear-gradient(160deg,#0a1628 0%,#102040 100%) !important;
+  border-top: 2px solid var(--teal) !important;
+  position: fixed !important;
+  top: 108px !important;  /* overridden per breakpoint */
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 9999 !important;
+  max-height: calc(100vh - 108px);
+  overflow-y: auto;
+  box-shadow: 0 12px 40px rgba(0,0,0,.5) !important;
+  margin: 0 !important;
+  padding: 8px 0 16px !important;
+}
+.slicknav_nav a {
+  color: rgba(255,255,255,.85) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  padding: 12px 20px !important;
+  font-family: 'Inter', sans-serif !important;
+  border-bottom: 1px solid rgba(255,255,255,.05) !important;
+  display: block;
+  transition: var(--ease) !important;
+}
+.slicknav_nav a:hover,
+.slicknav_nav .slicknav_row:hover {
+  background: rgba(0,184,148,.15) !important;
+  color: var(--teal) !important;
+  border-radius: 0 !important;
+  padding-left: 26px !important;
+  border-left: 3px solid var(--teal) !important;
+}
+.slicknav_nav .slicknav_item a { border-bottom: none !important; }
+.slicknav_nav .slicknav_arrow { color: var(--teal) !important; float: right; padding-right: 4px; }
+.slicknav_nav li { list-style: none !important; }
+.slicknav_nav ul { background: rgba(0,0,0,.25) !important; padding: 0 0 0 16px !important; }
+.slicknav_nav ul a { font-size: 13px !important; padding: 10px 20px !important; }
+
+/* ==============================================
+   RESPONSIVE — TABLET (768–991px)
+   Header: top-info(~36px) + logo-band(~100px, wraps) = ~136px; menu-area hidden
+   ============================================== */
+@media (min-width: 768px) and (max-width: 991px) {
+  /* Hide empty nav bar — hamburger is in the logo band */
+  .menu-area { display: none !important; }
+
+  /* Logo band wraps on tablet */
+  .header-area > .container > .row { flex-wrap:wrap; padding: 10px 0; }
+  .believed-logo img { width:260px !important; }
+  .header-area .container .col-md-6:last-child { justify-content:flex-start; margin-top:4px; }
+
+  /* Hamburger button position in logo band */
+  .header-area .container .col-md-6:last-child { display:flex !important; align-items:center; gap:12px; }
+  .responsive-menu-wrap { position:static !important; transform:none !important; display:block !important; }
+
+  /* Content offset: 136px below fixed header */
+  .page-title-area { margin-top: 136px !important; }
+  .slider-table { height: 70vh !important; min-height: 400px; }
+  .slider-table-cell { padding-top: 136px !important; }
+
+  /* Slicknav dropdown — full width, appears below the 136px header */
+  .slicknav_nav { top: 136px !important; max-height: calc(100vh - 136px); }
+
+  .donate-box { display:none !important; }
+  .stats-bar .stat-item { border-right:none; border-bottom:1px solid rgba(255,255,255,.1); padding:10px 8px; }
+  .about-area { padding:40px 0 !important; }
+  .service-content { margin:0 0 24px !important; }
+  .footer-widgets { margin-bottom:28px; }
+}
+
+/* ==============================================
+   RESPONSIVE — MOBILE (<768px)
+   Header: top-info(~36px) + logo-band(~72px) = ~108px; menu-area hidden
+   ============================================== */
+@media (max-width: 767px) {
+  /* Hide empty nav bar on mobile — hamburger is in the logo band */
+  .menu-area { display: none !important; }
+
+  /* Top info bar — only show phone/email (hide right nav links) */
+  .top-header-area .col-md-5 { display:none !important; }
+  .top-header-info {
+    text-align: left !important;
+    font-size: 11px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important;
+    gap: 0 !important;
+  }
+  .top-header-info a {
+    font-size: 11px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    min-width: 0 !important;
+  }
+  .top-header-info i.fa { margin-right: 4px !important; flex-shrink: 0 !important; }
+  .top-header-info .seprator { padding: 0 6px !important; flex-shrink: 0 !important; }
+
+  /* Logo band row: logo left, hamburger right — single flex row */
+  .header-area > .container > .row {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    min-height: 60px !important;
+    padding: 6px 0 !important;
+  }
+  .header-area > .container > .row > .col-md-6:first-child { flex: 1 1 auto !important; float:none !important; }
+  .header-area > .container > .row > .col-md-6:last-child  {
+    flex: 0 0 auto !important;
+    float: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    padding-right: 10px !important;
+    position: relative !important;
+  }
+  .believed-logo img { width: 180px !important; }
+
+  /* Show hamburger, hide college-code badge */
+  .header-area .container .col-md-6:last-child > div:not(.responsive-menu-wrap) { display:none !important; }
+  .responsive-menu-wrap { display: block !important; position: static !important; transform: none !important; margin: 0 !important; }
+
+  /* Slider: full-width hero — header overlays top; push text content below header */
+  .slider-table { height: 100vh !important; min-height: 360px !important; }
+  .slider-table-cell { padding-top: 108px !important; }
+  .slider-info h2 { font-size: 20px !important; }
+  .slider-info h3 { font-size: 15px !important; }
+  .slider-info p  { font-size: 13px !important; width: 100% !important; }
+
+  /* Content offset for inner pages */
+  .page-title-area { margin-top: 108px !important; padding: 28px 0 !important; }
+  .page-title .title h2 { font-size: 18px !important; }
+
+  /* Slicknav dropdown — fixed, full-width, below the 108px header */
+  .slicknav_nav { top: 108px !important; max-height: calc(100vh - 108px); }
+
+  /* Stats — 2×2 grid */
+  .stats-bar .col-md-3 { width:50%; float:left; }
+  .stats-bar .stat-item { border-right:none; border-bottom:1px solid rgba(255,255,255,.09); padding:10px 6px; }
+  .stats-bar .stat-number { font-size:26px; }
+  .stats-bar .stat-label  { font-size:10px; }
+
+  /* About section */
+  .about-area { padding:32px 0 !important; }
+  .about-area .col-md-8,.about-area .col-md-4 { width:100%; }
+  .service-content { margin:0 0 20px !important; }
+
+  /* Footer */
+  .footer-widgets { margin-bottom:26px; }
+  .footer-widgets h2 { font-size:13px !important; }
+  .top-footer-area { padding:36px 0 22px !important; }
+
+  /* Misc */
+  .donate-box { display:none !important; }
+  .table { font-size:12px; }
+  .table > thead > tr > th,.table > tbody > tr > td { padding:9px 10px !important; }
+  #scrollUp { bottom:18px !important; right:14px !important; width:38px !important; height:38px !important; }
+}
+
+/* ╔══════════════════════════════════════════════╗
+   ║  SPACING & UX ENHANCEMENTS — WEB + MOBILE   ║
+   ╚══════════════════════════════════════════════╝ */
+
+/* ── Global ── */
+html { scroll-behavior: smooth; }
+body { line-height: 1.7; }
+
+/* ── Consistent section vertical rhythm ── */
+.section-padding { padding: 72px 0 !important; }
+.about-area      { padding: 72px 0 56px !important; }
+
+/* ── Section heading — shared decoration ── */
+.title > h2 {
+  font-size: 30px !important;
+  line-height: 1.3 !important;
+  margin-bottom: 6px !important;
+  letter-spacing: -.3px;
+}
+/* Subtitle line under section titles */
+.title > p:first-of-type { margin-top: 0 !important; }
+
+/* ── Stats bar — tighter on desktop, more breathing room ── */
+.stats-bar { padding: 36px 0 !important; }
+.stats-bar .stat-item {
+  padding: 10px 28px !important;
+  transition: var(--ease);
+}
+.stats-bar .stat-item:hover { background: rgba(255,255,255,.05); }
+.stats-bar .stat-icon {
+  font-size: 26px !important;
+  color: rgba(255,255,255,.28) !important;
+  margin-bottom: 6px !important;
+}
+.stats-bar .stat-number { font-size: 38px !important; }
+.stats-bar .stat-label  { font-size: 11.5px !important; letter-spacing: 1.4px; margin-top: 6px !important; }
+
+/* ── About section — vertical gaps between the two inner rows ── */
+.about-area .col-md-8 p { font-size: 15px !important; line-height: 1.9 !important; }
+/* Gap between text+sidebar row and message cards row */
+.about-area .container > .row + .row { margin-top: 52px !important; }
+
+/* ── Service cards (messages + accreditation) — equal-height columns ── */
+.about-area .container > .row { display: flex !important; flex-wrap: wrap !important; }
+.about-area .container > .row > [class*="col-"] { display: flex !important; flex-direction: column !important; }
+.service-content {
+  flex: 1 1 auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 30px 24px 24px !important;
+  margin: 0 0 28px !important;
+}
+.service-content > p { flex: 1 1 auto !important; }
+
+/* ── Service card icon: larger, teal tint ── */
+.service-content > i.fa {
+  font-size: 56px !important;
+  opacity: .11 !important;
+  top: 18px !important; right: 18px !important;
+}
+
+/* ── Message card heading size ── */
+.service-title h3 { font-size: 18px !important; padding: 0 0 12px !important; }
+
+/* ── Accreditation section title ── */
+.about-area h2[align="center"] {
+  font-size: 26px !important;
+  margin: 48px 0 32px !important;
+}
+/* Accreditation card image circles: larger on desktop */
+.about-area > .row .service-content p img {
+  width: 118px !important; height: 118px !important;
+  padding: 8px !important;
+  transition: transform .35s cubic-bezier(.4,0,.2,1), border-color .3s !important;
+}
+.about-area > .row .service-content { padding: 30px 20px 22px !important; }
+
+/* ── News widget ── */
+.sidebar-widget { padding: 22px 20px 16px !important; }
+.widget-title h2 { font-size: 17px !important; }
+.sidebar-widget ul li a { font-size: 13.5px !important; }
+.sidebar-widget ul li a span { font-size: 11px !important; margin-top: 3px !important; }
+
+/* ── CTA section buttons — gap between them ── */
+.call-to-action a + a { margin-top: 0; }
+
+/* ── Footer ── */
+.top-footer-area { padding: 64px 0 44px !important; }
+.footer-widgets { margin-bottom: 36px !important; }
+.footer-widgets h2 { margin-bottom: 20px !important; padding-bottom: 12px !important; font-size: 13.5px !important; }
+.footer-widgets ul li { padding: 8px 0 !important; }
+.footer-widgets ul li a { font-size: 13.5px !important; }
+.footer-social-link { margin-top: 20px !important; gap: 10px !important; }
+.footer-social-link a { width: 36px !important; height: 36px !important; font-size: 14px !important; }
+.main-footer-area { padding: 18px 0 !important; }
+.copy-right p { font-size: 12.5px !important; }
+
+/* ── Inner page table/content breathing room ── */
+.section-padding > .container { padding-top: 8px; }
+
+/* ── Slider info text — tighter line spacing on desktop ── */
+.slider-info { padding: 0 !important; }
+
+/* ══════════════════════════════════════════
+   TABLET enhancements (768–991px)
+   ══════════════════════════════════════════ */
+@media (min-width: 768px) and (max-width: 991px) {
+  .section-padding { padding: 56px 0 !important; }
+  .about-area      { padding: 56px 0 40px !important; }
+  .stats-bar       { padding: 28px 0 !important; }
+  .stats-bar .stat-number { font-size: 30px !important; }
+  .stats-bar .stat-label  { font-size: 10.5px !important; }
+  .stats-bar .stat-item   { padding: 8px 16px !important; }
+  .about-area .container > .row + .row { margin-top: 40px !important; }
+  .top-footer-area { padding: 48px 0 32px !important; }
+  .footer-widgets  { margin-bottom: 28px !important; }
+  /* CTA buttons stack on tablet */
+  .call-to-action .container a { display: block !important; max-width: 260px; margin: 0 auto 14px !important; }
+}
+
+/* ══════════════════════════════════════════
+   MOBILE enhancements (<768px)
+   ══════════════════════════════════════════ */
+@media (max-width: 767px) {
+  /* Global section rhythm */
+  .section-padding { padding: 44px 0 !important; }
+  .about-area      { padding: 44px 0 32px !important; }
+
+  /* Stats: 2×2 grid, no border-right */
+  .stats-bar { padding: 20px 0 !important; }
+  .stats-bar .col-md-3 { width: 50% !important; float: left !important; }
+  .stats-bar .stat-item {
+    padding: 14px 10px !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,.09) !important;
+  }
+  .stats-bar .col-md-3:nth-child(odd) .stat-item { border-right: 1px solid rgba(255,255,255,.09) !important; }
+  .stats-bar .col-md-3:nth-child(3) .stat-item,
+  .stats-bar .col-md-3:nth-child(4) .stat-item { border-bottom: none !important; }
+  .stats-bar .stat-number { font-size: 28px !important; }
+  .stats-bar .stat-label  { font-size: 10px !important; letter-spacing: 1px; }
+  .stats-bar .stat-icon   { font-size: 20px !important; margin-bottom: 4px !important; }
+
+  /* About text */
+  .about-area .col-md-8 p { font-size: 14px !important; line-height: 1.8 !important; }
+  .about-area .container > .row + .row { margin-top: 32px !important; }
+
+  /* Service cards: proper gap between stacked cards */
+  .service-content { padding: 22px 18px 18px !important; margin: 0 0 18px !important; }
+  .service-title h3 { font-size: 16px !important; }
+  .service-content > p { font-size: 13.5px !important; }
+
+  /* Accreditation images smaller on mobile */
+  .about-area > .row .service-content p img { width: 90px !important; height: 90px !important; }
+
+  /* CTA buttons — full width, stacked */
+  .call-to-action { padding: 44px 0 !important; }
+  .call-to-action .container { padding: 0 20px !important; }
+  .call-to-action h2 { font-size: 22px !important; }
+  .call-to-action p  { font-size: 14px !important; }
+  section.call-to-action a,
+  .call-to-action a[href] {
+    display: block !important;
+    width: 100% !important;
+    max-width: 300px !important;
+    margin: 0 auto 14px !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Footer: single column */
+  .footer-widgets  { margin-bottom: 28px !important; }
+  .top-footer-area { padding: 40px 0 28px !important; }
+  .footer-widgets h2 { font-size: 13px !important; }
+  .main-footer-area { padding: 14px 0 !important; }
+  .copy-right p { font-size: 11.5px !important; line-height: 1.8; }
+
+  /* Slider: tighter text on small screens */
+  .slider-info h2 { font-size: 22px !important; line-height: 1.25 !important; margin-bottom: 10px !important; }
+  .slider-info p  { font-size: 13.5px !important; line-height: 1.65 !important; margin-bottom: 20px !important; }
+
+  /* Section title */
+  .title > h2 { font-size: 24px !important; }
+  .title > p  { font-size: 14px !important; }
+
+  /* Breadcrumb / inner page titles */
+  .page-title .title h2 { font-size: 20px !important; }
+
+  /* Tables: horizontal scroll */
+  .table-responsive { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
+
+  /* Inner page content padding */
+  .section-padding .container { padding-left: 16px !important; padding-right: 16px !important; }
+}
